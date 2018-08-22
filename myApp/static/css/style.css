@@ -1,0 +1,207 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+@import url('https://fonts.googleapis.com/css?family=Kanit');
+
+#header {
+  background-color: white;
+  height: 120%;
+
+}
+.logoimg{
+  max-width: 100%;
+  width: 40%;
+  position: relative;
+  padding: 0.5%;
+  margin-left: 7%;
+  height: auto !important;
+  overflow: hidden;
+  
+}
+.logoimg2{
+  max-width: 5%;
+  width: 40%;
+  position: relative;
+  padding: 0.5%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto !important;
+  overflow: hidden;
+  display: none;
+}
+@media (max-width: 850px) {
+  .logoimg{
+    display: none;
+  }
+  .logoimg2 {
+    display: block;
+  }
+}
+
+#content {
+  background-color: white;
+  width: 85%;
+  min-width: 60%;
+  margin: auto;
+  height: 100%;
+  min-height: 800px;
+  margin-top: 0px;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+}
+
+#content-line {
+  background-color: #ba0003;
+  height: 5px;
+}
+
+#main-content {
+  position: relative;
+  padding: 34px 17px;
+}
+
+.side-menu {    
+        position: fixed;
+        padding: 1px;
+        text-align:center;
+        top: auto;
+        right: 0px;
+        width: auto;
+        height: auto;
+        background-color: white;
+        box-shadow: 0.2px 0.2px 0.2px 0px #aaaaaa;
+}
+    
+.add-question {
+        cursor: pointer;
+}
+
+body {
+  margin: 0px;
+  background-color: #F1F1F3;
+  font-size: 15px;
+	font-family: 'Kanit', sans-serif;
+}
+
+form {
+  padding: 10px;
+  font-size: inherit;
+}
+
+.contain{
+  padding: 10px;
+  font-size: inherit;
+}
+input {
+  padding: 8px;
+  padding-bottom: 0.5px;
+  margin-top: 10px;
+  font-size:inherit;
+  outline: none;
+  width: 100%;
+  border: none;
+  display: block;
+  border-bottom: 0.5px solid rgb(196, 196, 196);
+  background-color: transparent;
+}
+
+ีurl {
+  padding: 5px;
+  padding-bottom: 0.5px;
+  margin-top: 10px;
+  font-size:inherit;
+  outline: none;
+  width: 100%;
+  border: none;
+  display: block;
+  border-bottom: 0.5px solid rgb(196, 196, 196);
+  background-color: transparent;
+}
+
+.topic{
+  font-size: 27px;
+}
+
+input:focus{
+  border-bottom: 1.5px solid #ba0003;
+
+}
+.btn-default{
+  padding: 8px;
+  margin-top: 10px;
+}
+input:disabled{
+  border: none;
+  padding-bottom: 0.5px;
+  margin-top: 7px;
+}
+
+.ques{
+  font-weight: bold;
+}
+
+.ques-topic{
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.answer{
+  margin-top: 25px;
+}
+
+.aa{
+  padding-bottom: 15px;
+}
+
+textarea {
+  padding: 8px;
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+  height: 150px;
+  outline: none;
+  border: none;
+  border: 0.5px solid rgb(196, 196, 196);
+  resize:none;
+}
+
+textarea:focus {
+  border-bottom: 1.5px solid #ba0003;
+
+}
+
+questionshot {
+  margin: 0px;
+  background-color: rgb(255, 0, 0);
+	font-family: 'Kanit', sans-serif;
+}
+.btn{
+  align-content: center;
+  background: transparent;
+  outline: none !important;
+}
+.btn:focus { 
+  outline: none !important; 
+}
+
+select{
+  background: #fff;
+    color:#555;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 35px 6px 12px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position:relative;
+    min-width: 160px;
+    outline-color: #ba0003;
+}
+
+button>.material-icons {
+  line-height: 0.2;
+  position:relative;
+  top:7px;
+}
+

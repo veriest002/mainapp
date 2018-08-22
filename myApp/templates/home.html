@@ -1,0 +1,238 @@
+{% load static %}
+{% load qr_code %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en"></html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon2.ico">
+    <link rel="icon" href="{{ STATIC_URL }}images/favicon2.ico">
+    <title>Create Form</title>
+</head>
+
+<body>
+    
+        <div id="header">
+            <a href="{% url 'main' %}">
+
+            <img class="logoimg" src="{% static 'images/logo.png' %}" />
+            <img class="logoimg2" src="{% static 'images/icon.png' %}" />
+            </a>
+        </div>
+<form method="post" action="">
+    {% csrf_token %}
+    <div id="content">
+
+            <div class="side-menu">
+                    <!-- <div class="dropdown">
+                        <button class="btn" title="Add a question" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                            <i class="fa fa-plus-circle " aria-hidden="true" style="font-size: 25px;"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1" style="cursor: pointer;">
+                            <li role="presentation1" onclick="presentation1()">
+                                <a role="menuitem" tabindex="-1" href="#">คำตอบสั้น</a>
+                            </li>
+                            <li role="presentation2" onclick="presentation2()">
+                                <a role="menuitem" tabindex="-1" href="#">คำตอบยาว</a>
+                            </li>
+                            <li role="presentation3" onclick="presentation3()">
+                                <a role="menuitem" tabindex="-1" href="#">คำตอบแบบสเกล</a>
+                            </li>
+                        </ul>
+                    </div> -->
+                    <div>
+                        <button type="submit" class="btn" title="Submit"  >
+                        <i class="fa fa-check-circle" aria-hidden="true" style="font-size: 25px;"></i>
+                </button>   
+                    </div>
+                    <!-- <div>
+                    <a href="{% url 'feedback' %}" style="color: black">
+                        <button type="button" class="btn" title="Feedback" href="{% url 'feedback' %}">
+                            <i class="fa fa-arrow-circle-down " aria-hidden="true" style="font-size: 25px;"></i>
+                    </button>
+                    </a>
+                    </div>
+
+
+                    <div>
+                            <button type="button" class="btn" title="Share"  data-toggle="modal" data-target="#myModal">
+                                    <i style="font-size:24px" class="fa">&#xf1e0;</i>
+                        </button>
+                        </div> -->
+
+                </div>
+        <div id="content-line"></div>
+          
+            <!-- <input name="topic" class="topic" type="text" placeholder="ชื่อแบบฟอร์ม">
+            <input name="description" type="text" placeholder="คำอธิบาย"> -->
+
+        <div id="question_block">
+            <div class="contain">
+                {{ formset.management_form }}
+                <table class="table table-hover">
+                    {% render_field form.name class="topic" type="text" placeholder="ชื่อแบบฟอร์ม" %}
+                    {% render_field form.description type="text" placeholder="คำอธิบาย" %}
+            
+                    <span class="formset_row">
+                            {% for form in formset %}
+                                {% if form.instance.pk %}{{ form.DELETE }}{% endif %}
+                                {% render_field form.text name="questionS" type="text" placeholder="คำถาม" %}
+                                {% render_field form.choices name="questionS" type="text" placeholder="คำตอบแบบสเกลโปรดกรองช่องนี้ เช่นต้องการ 3 choices กรอกเป็น 1,2,3" %}
+                                <br>
+                                {% render_field form.type %}
+                            {% endfor %}
+                    </span>
+                </table>
+            </div>
+                <!-- {% for form in formset %}
+                    <span id="ha">
+                        {% render_field form.text name="questionS" type="text" placeholder="คำถาม" %}
+                        <div style="padding: 8px; margin-top: 10px; padding-bottom: 0.5px; border-bottom: 1px dotted rgb(196, 196, 196);">
+                        <font color="#9c9c9c">คำตอบแบบข้อความสั้น</font></div>
+                    </span>
+                {% endfor %} -->
+            <!--คำตอบสั้น-->
+
+            <div id="questionform">
+
+            </div>
+                
+    </div>
+    
+</form>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+          
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <center><h4 class="modal-title">แบบฟอร์ม</h4></center>
+              </div>
+              <div class="modal-body">
+                   <center>  
+                       {% qr_from_text "http://google.com" size="s" image_format="png" error_correction="L" %}
+                      
+                        <!-- ใส่URL เพิ่มทีหลัง -->
+
+                        <input  type="text" value="URL" id="myInput">
+
+                        <button class="btn btn-default" onclick="myFunction()">Copy</button>
+                        
+                        <right><button class="btn btn-default">
+                            <a href="https://www.facebook.com/sharer/sharer.php?" target="_blank" rel="noopener">
+                            <i style="font-size:24px" class="fa">&#xf230;</i>
+                        
+                        </a>  </button></right>
+
+                   </center>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+
+    </div>
+
+    <script>
+        function presentation1() {
+            var div = document.createElement('div');
+            var text = '{% for form in formset %}\
+                    <tr class="formset_row">\
+                        <span>\
+                            {% render_field form.text name="questionS" type="text" placeholder="คำถาม" %}\
+                            <div style="padding: 8px; margin-top: 10px; padding-bottom: 0.5px; border-bottom: 1px dotted rgb(196, 196, 196);">\
+                            <font color="#9c9c9c">คำตอบแบบข้อความสั้น</font></div>\
+                        </span>\
+                    </tr>\
+                <input class="btn btn-default" type="button" value="remove" onclick="removeRow(this)">\
+            {% endfor %}';
+            div.innerHTML = text;
+            document.getElementById('questionform').appendChild(div);
+        }
+        function presentation2() {
+            var div = document.createElement('div');
+            var text = '{% for form in formset %}\
+                    <span>\
+                        {% render_field form.text name="questionS" type="text" placeholder="คำถาม" %}\
+                        <div style="padding: 8px; margin-top: 10px; padding-bottom: 0.5px; border-bottom: 1px dotted rgb(196, 196, 196);">\
+                        <font color="#9c9c9c">คำตอบแบบข้อความยาว</font></div>\
+                    </span>\
+                <input class="btn btn-default" type="button" value="remove" onclick="removeRow(this)">\
+            {% endfor %}';
+            div.innerHTML = text;
+            document.getElementById('questionform').appendChild(div);
+        }
+        function presentation3() {
+            var div = document.createElement('div');
+            div.innerHTML =
+                '<input name="questionS" type="text" placeholder="คำถาม">\
+                <div style="padding-top:15px;">\
+                <select>\
+                    <option value="0">0</option>\
+                    <option value="1" selected>1</option>\
+                </select>\
+                <span style="margin:15px;">ถึง</span>\
+                <select>\
+                    <option value="2">2</option>\
+                    <option value="3">3</option>\
+                    <option value="4">4</option>\
+                    <option valuex="5" selected>5</option>\
+                    <option value="6">6</option>\
+                    <option value="7">7</option>\
+                    <option value="8">8</option>\
+                    <option value="9">9</option>\
+                    <option value="10">10</option>\
+                </select>\
+                </div>\
+                <input name="des1" type="text" placeholder="ป้ายกำกับตัวเลือกต่ำสุด">\
+                <input name="des2" type="text" placeholder="ป้ายกำกับตัวเลือกสูงสุด">\
+                <input class="btn btn-default" type="button" value="remove" onclick="removeRow(this)">';
+            document.getElementById('questionform').appendChild(div);
+        }
+        function removeRow(input) {
+            document.getElementById('questionform').removeChild(input.parentNode);
+        }
+
+        function myFunction() {
+                /* Get the text field */
+             var copyText = document.getElementById("myInput");
+
+                 /* Select the text field */
+                copyText.select();
+
+                 /* Copy the text inside the text field */
+                document.execCommand("copy");
+
+                 /* Alert the copied text */
+                alert("Copy URL : " + copyText.value);
+}
+    </script>
+    <script src="{% static '/js/jquery.formset.js' %}"></script>
+    <script type="text/javascript">
+            $(function() {
+                $('.formset_row').formset({
+                    addText:'<br></br><button type="button" class="btn btn-default" data-dismiss="modal">Add another question</button>',
+                    deleteText: '<button type="button" class="btn btn-default" data-dismiss="modal">Remove</button>',
+                    prefix: '{{ formset.prefix }}',
+                });
+    })
+    </script>
+</body>

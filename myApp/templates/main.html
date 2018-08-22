@@ -1,0 +1,60 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en"></html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon2.ico">
+    <link rel="icon" href="{{ STATIC_URL }}images/favicon2.ico">
+    <title>Main</title>
+</head>
+
+<body>
+    
+        <div id="header">
+                <a href="{% url 'main' %}">
+
+                        <img class="logoimg" src="{% static 'images/logo.png' %}" />
+                        <img class="logoimg2" src="{% static 'images/icon.png' %}" />
+                </a>
+        </div>
+        
+
+    <div id="content">
+        <div id="content-line"></div>
+        <div class="contain">
+            <!-- <a href="{% url 'social:begin' 'tu' %}">Login with TU</a><br> -->
+            <div>
+                <a href="{% url 'new' %}">
+                    <button class = "btn btn-default"><i class="material-icons">playlist_add</i> Create New Survey</button>
+                </a><br>
+                {% for survey in surveys %}
+                    <li><a href="{{ survey.get_absolute_url }}">{% trans "Take the Survey"%} {{survey.name}}</a></li>
+                {% endfor %}
+                <br>
+                <div id="content-line"></div><br>
+                {% for survey in surveys %}
+                    {% if user.is_authenticated %}
+                        <li><a href="{{ survey.get_feedback }}">{{survey.name}} {% trans "Feedback"%} </a></li>
+                    {%endif%}
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+
+    
+    <script src={% static 'js/main.js' %}></script>
+</body>

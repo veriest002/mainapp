@@ -1,0 +1,129 @@
+{% load static %}
+{% load i18n %}
+{% load widget_tweaks %}
+{% load qr_code %}
+
+<!DOCTYPE html>
+<html lang="en"></html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon2.ico">
+    <link rel="icon" href="{{ STATIC_URL }}images/favicon2.ico">
+    <title>Answer</title>
+</head>
+
+<body>
+    <a href="{% url 'main' %}">
+        <div id="header">
+            <img class="logoimg" src="{% static 'images/logo.png' %}" />
+            <img class="logoimg2" src="{% static 'images/icon.png' %}" />
+        </div>
+    </a>
+    <div id="content">
+        
+        <div id="content-line"></div>
+        <div class="contain">
+            
+            <input name="topic" class="ques-topic" type="text" placeholder="{{survey.name}}" disabled>
+            <input name="description" type="text" placeholder="{{survey.description|safe}}" disabled>
+            <form action="{% url 'survey-detail' id=survey.id %}" method="post">
+            {% csrf_token %}
+            <div class="side-menu">
+                <!-- <div class="dropdown">
+                    <button class="btn" title="Add a question" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                        <i class="fa fa-plus-circle " aria-hidden="true" style="font-size: 25px;"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1" style="cursor: pointer;">
+                        <li role="presentation1" onclick="presentation1()">
+                            <a role="menuitem" tabindex="-1" href="#">คำตอบสั้น</a>
+                        </li>
+                        <li role="presentation2" onclick="presentation2()">
+                            <a role="menuitem" tabindex="-1" href="#">คำตอบยาว</a>
+                        </li>
+                        <li role="presentation3" onclick="presentation3()">
+                            <a role="menuitem" tabindex="-1" href="#">คำตอบแบบสเกล</a>
+                        </li>
+                    </ul>
+                </div> -->
+
+
+                <div>
+                    <button type="button" class="btn" title="Share"  data-toggle="modal" data-target="#myModal">
+                            <i style="font-size:24px" class="fa">&#xf1e0;</i>
+                    </button>
+                </div>
+            </div>
+                <table class="table table-hover">
+                    <tbody>
+                        {% for form in response_form %}
+                            <tr class="{% if form.errors%} danger {% endif %}">
+                                <td>
+                                    {{ form.label|safe }}
+                                    {% if form.field.required %}
+                                        <span class="glyphicon glyphicon-asterisk" style="color:red"> </span>
+                                    {% endif %}
+                                    <span class="help-inline" style="color:red">
+                                        <strong> {% for error in  form.errors %}{{ error }}{% endfor %} </strong>
+                                    </span> <br>
+                                    {% for field in form %}
+                                        {{ field }}
+                                    {% endfor%}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <input class="btn btn-default" type="submit" value="submit" style="padding: 8px; margin-top: 10px;">
+            </form>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <center><h4 class="modal-title">แบบฟอร์ม</h4></center>
+            </div>
+            
+            <div class="modal-body">
+                 <center>  
+                     {% qr_from_text "http://localhost:8000/" size="s" image_format="png" error_correction="L" %}
+                    
+                      <!-- ใส่URL เพิ่มทีหลัง -->
+
+                      <input  type="text" value="http://localhost:8000{{ request.path }}" id="myInput">
+                    
+                      <button class="btn btn-default" onclick="myFunction()">Copy</button>
+                      
+                      <right><button class="btn btn-default">
+                          <a href="https://www.facebook.com/sharer/sharer.php?" target="_blank" rel="noopener">
+                          <i style="font-size:24px" class="fa">&#xf230;</i>
+                      
+                      </a>  </button></right>
+
+                 </center>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+
+  </div>
+</body>

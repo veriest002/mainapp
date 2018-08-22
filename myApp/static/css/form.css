@@ -1,0 +1,308 @@
+.form-container{
+min-height: auto;
+max-width: 715px;
+margin-top:15px;
+margin-left: 15%;
+}
+
+.form-group{
+background-color: white;
+}
+
+.group        { 
+position:relative;
+}
+input         {
+font-size:18px;
+padding:10px 10px 10px 5px;
+display:block;
+width:620px;
+border:none;
+border-bottom:1px solid rgba(0,0,0,0.12);
+}
+
+#thatbox
+{
+font-size: 34px;
+font-weight: 400;
+}
+
+#thisbox
+{
+font-size: 14px;
+}
+
+.question-text
+{
+font-size: 20px;
+width: 350px;
+margin-left: -30px;
+}
+
+.option
+{
+font-size: 13px;
+width: 530px;
+}
+
+.option-add
+{
+font-size: 14px;
+width: 450px;
+}
+
+.option-add-check
+{
+font-size: 14px;
+width: 450px;
+}
+
+
+
+
+.parent-class
+{
+padding: 60px 30px 50px;
+}
+
+
+
+.input-text{
+    border: 0;
+    background: transparent;
+    outline: 0;
+    border-bottom: 1px solid grey;
+    margin-left: 20px;
+}
+
+.input-text-one
+{
+    width: 80%;
+    height: 50px;
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.input-text-one:first-child
+{
+    width: 80%;
+    margin-top: 50px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.input-text-one:first-child::-webkit-input-placeholder {
+    font-size: 20px;
+    line-height: 1;
+}
+.input-text-two
+{
+    width: 60%;
+    height: 15px;
+    margin-top: 30px;
+    margin-bottom: 35px;
+}
+
+#sortable>div
+{
+    cursor: move;
+}
+
+.questions
+{
+    min-height: 300px;
+    background-color: white;
+}
+
+.ui-state-default
+{
+    border: 1px solid lightgrey;
+    border: none;
+}
+
+.side-menu
+{    
+    position: fixed;
+    top: 10%;
+    left: 80%;
+    width: 40px;
+    height: auto;
+    background-color: white;
+    box-shadow: 5px 5px 5px 5px #aaaaaa;
+}
+
+.add-question{
+    cursor: pointer;
+}
+
+.delete-question
+{
+    cursor: pointer;
+    color: #757575;
+}
+
+.delete-this
+{
+    cursor: pointer;
+}
+
+.dropdown
+{
+    border: 1px solid black;
+    background-color: white;
+}
+
+.glyphicon 
+{
+    top: -2px;
+}
+
+#type-question
+{
+    background-color: #f5f5f5;
+    width: 200px;
+    height: 40px;
+    border: none;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+    position: relative;
+    left: 20%;
+    top: -5px;
+}
+        #type-question::after
+{
+    width: 400px;
+    height: 140px;
+}
+
+#type-question>option
+{			
+    width: 175px;
+    height: 100px;
+    border: none;
+    background-color: rgb(231, 231, 231);
+}
+
+#type-question:focus{ outline:thin; }
+
+.radio-icon, .check-icon
+{
+    color: lightgray;
+}
+
+input[type=text]:disabled 
+{
+    background: white;
+    border: none;
+    outline: 0
+}
+
+
+/* Hover Effect */
+
+
+input:focus     { outline:thin; } /*outline thin for not showing box when focuse*/
+
+/* LABEL ======================================= */
+label          {
+    color:#999; 
+    font-size:18px;
+    font-weight:normal;
+    position:absolute;
+    pointer-events:none;
+    left:5px;
+    top:10px;
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+input:focus ~ label, input:valid ~ label    {
+    top:-20px;
+    font-size:14px;
+    color:rgb(103, 58, 183);
+}
+
+/* BOTTOM BARS ================================= */
+.bar  { position:relative; display:block; width:620px; }
+.bar:before, .bar:after   {
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    background:rgb(103, 58, 183); 
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+.bar:before {
+    left:50%;
+}
+.bar:after {
+    right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+}
+
+
+/* QUESTION BARS ================================= */
+.bar-question  { position:relative; display:block; width:350px; margin-left: -30px;}
+.bar-question:before, .bar-question:after   {
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    background:rgb(103, 58, 183); 
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+.bar-question:before {
+    left:50%;
+}
+.bar-question:after {
+    right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar-question:before, input:focus ~ .bar-question:after {
+    width:50%;
+}
+
+
+
+/* OPTION BARS ================================= */
+.bar-ques  { position:relative; display:block; width:530px; margin-left: 40px;}
+.bar-ques:before, .bar-ques:after   {
+    content:'';
+    height:2px; 
+    width:0;
+    bottom:1px; 
+    position:absolute;
+    background:rgb(103, 58, 183); 
+    transition:0.2s ease all; 
+    -moz-transition:0.2s ease all; 
+    -webkit-transition:0.2s ease all;
+}
+.bar-ques:before {
+    left:50%;
+}
+.bar-ques:after {
+    right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar-ques:before, input:focus ~ .bar-ques:after {
+    width:50%;
+}
+
+
+
+/* End Hover Effect */
